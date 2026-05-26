@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../Logo.png">
+    <title>Technology in Transportation - EcoTransit</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.8; 
+        }
+
+        header.navbar {
+            background-color: #ffffff;
+            padding: 0 5%;
+            border-bottom: 4px solid #27ae60;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-group { 
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .circle-logo {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #e8f8f5; 
+        }
+
+        .circle-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-name {
+            margin-left: 10px;
+        }
+
+        .logo-name h1 { 
+            margin: 0; 
+            font-size: 20px; 
+            color: #2c3e50; 
+        }
+
+        .nav-links {
+            list-style-type: none; 
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 20px 15px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: bold;
+            display: block;
+        }
+
+        .nav-item a:hover {
+            color: #27ae60;
+        }
+
+        .nav-item.active > a {
+            color: #27ae60 !important;
+            border-bottom: 3px solid #27ae60;
+            padding-bottom: 5px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 220px;
+            box-shadow: 0px 8px 16 rgba(0,0,0,0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            list-style-type: none;
+            padding: 0;
+            border-top: 3px solid #27ae60;
+        }
+
+        .nav-item:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content li a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: normal;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content li a:hover {
+            background-color: #f1f1f1;
+            color: #27ae60;
+        }
+
+        #menu-checkbox {
+            display: none;
+        }
+
+        .menu-container {
+            display: none;
+            position: relative;
+            padding: 20px 0;
+            z-index: 102;
+        }
+
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #2c3e50;
+            border-radius: 3px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hero-banner {
+            background-color: #2c3e50;
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('../Images/OIP (1).webp'); 
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 10%;
+            text-align: center;
+        }
+
+        .hero-content h2 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            color: #27ae60;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .overview-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 450px;
+            padding: 50px 5%;
+            background: #ffffff;
+            gap: 40px;
+        }
+
+        .overview-text {
+            width: 50%;
+            padding: 30px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 15px;
+            transition: 0.4s;
+        }
+
+        .overview-text:hover {
+            transform: translateY(-10px);
+            background: #27ae60;
+        }
+
+        .overview-text h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-size: 36px;
+        }
+
+        .overview-image {
+            width: 50%;
+            max-width: 500px;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url("../Images/9.webp") no-repeat center;
+            background-size: cover;
+            border-radius: 20px;
+        }
+
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 50px 5%;
+            background: #f4f7f6;
+            gap: 25px;
+        }
+
+        .feature-card {
+            width: 48%;
+            padding: 20px;
+            background: #ffffff;
+            border-bottom: 5px solid #27ae60;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+        }
+
+        .feature-img-box {
+            width: 100%;
+            height: 200px;
+            background-color: #2c3e50;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .img-gps { background-image: url('../Images/10.webp'); }
+        .img-lights { background-image: url('../Images/11.jpg'); }
+        .img-tracking { background-image: url('../Images/12.webp'); }
+        .img-ai { background-image: url('../Images/13.webp'); }
+
+        .feature-card h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            font-size: 22px;
+        }
+
+        .feature-card p {
+            margin: 0;
+            font-size: 15px;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #2c3e50;
+            color: white;
+        }
+
+        @media screen and (max-width: 1024px) {
+            .overview-section {
+                padding: 40px 5%;
+                gap: 25px;
+            }
+            .overview-image {
+                height: 320px;
+            }
+            .features-grid {
+                gap: 20px;
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+            .hero-content h2 {
+                font-size: 34px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-container {
+                display: block;
+            }
+
+            .menu-container:hover .menu-toggle span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            .menu-container:hover .menu-toggle span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-container:hover .menu-toggle span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 69px; 
+                right: -100%;
+                flex-direction: column;
+                align-items: flex-start;
+                background-color: #ffffff;
+                width: 280px;
+                height: calc(100vh - 69px);
+                box-shadow: -4px 4px 10px rgba(0,0,0,0.1);
+                transition: right 0.3s ease-in-out;
+                padding: 40px 20px 20px 20px;
+                z-index: 99;
+            }
+
+            .menu-container:hover ~ .nav-links,
+            .nav-links:hover {
+                right: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+                padding: 15px 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                width: 100%;
+                background: #f9f9f9;
+                border-top: none;
+                margin-top: 10px;
+            }
+            
+            .nav-item:hover .dropdown-content {
+                display: block;
+            }
+
+            .hero-content h2 {
+                font-size: 26px;
+            }
+            .hero-content p {
+                font-size: 16px;
+            }
+            
+            .overview-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 35px 5%;
+            }
+
+            .overview-text {
+                width: 100%;
+            }
+
+            .overview-image {
+                width: 100%;
+                max-width: 500px;
+                height: 300px;
+                margin: 0 auto;
+            }
+
+            .features-grid {
+                flex-direction: column;
+                padding: 30px 5%;
+            }
+
+            .feature-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header class="navbar">
+    <div class="logo-group">
+        <div class="circle-logo">
+            <img src="../Logo.png" alt="EcoTransit Logo">
+        </div>
+        <div class="logo-name">
+            <h1>EcoTransit</h1>
+        </div>
+    </div>
+    
+    <input type="checkbox" id="menu-checkbox">
+
+    <div class="menu-container">
+        <label for="menu-checkbox" class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
+
+    <ul class="nav-links">
+        <li class="nav-item"><a href="../index.html">Home</a></li>
+        <li class="nav-item">
+            <a href="#">Topics ▼</a>
+            <ul class="dropdown-content">
+                <li><a href="Traffic_Challenge.html">Traffic Challenges</a></li>
+                <li><a href="AI_and_IoT.html">IoT and AI Technology</a></li>
+                <li><a href="Tech_in_Transportation.html">Technology in Transportation</a></li>
+                <li><a href="Smart_Cities.html">Sustainable Smart City</a></li>
+            </ul>
+        </li>
+        <li class="nav-item"><a href="Group_Member.html">About Us</a></li>
+        <li class="nav-item"><a href="Citations.html">Citations</a></li>
+    </ul>
+</header>
+
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h2>Technology in Transportation</h2>
+            <p>Exploring how innovation helps modern vehicles and transit layouts move people safer and faster every day.[cite: 6]</p>
+        </div>
+    </section>
+
+    <section class="overview-section">
+        <div class="overview-text">
+            <h2>Making Transit Smarter</h2>
+            <p>
+                Technology has greatly improved transportation systems by making them safer, faster, and much more efficient. Instead of relying on old road styles, modern systems integrate tools like GPS tracking, Artificial Intelligence (AI), the Internet of Things (IoT networks), and Electric Vehicles (EVs).[cite: 6]
+            </p>
+            <p>
+                By building these features directly into our travel networks, cities can reduce traffic jams, cut down on daily trip times, and stop excess pollution before it starts.[cite: 6]
+            </p>
+        </div>
+        <div class="overview-image"></div>
+    </section>
+
+    <section class="features-grid">
+        
+        <div class="feature-card">
+            <div class="feature-img-box img-gps"></div>
+            <h2>1. GPS and Route Optimization</h2>
+            <p>Global Positioning System (GPS) tracking connects directly to space satellites to guide drivers down the fastest routes. By looking at live maps, GPS apps find accidents or traffic slowdowns early and steer drivers onto clearer, less crowded paths.[cite: 6]</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-img-box img-lights"></div>
+            <h2>2. Smart Traffic Lights &amp; Sensors</h2>
+            <p>Instead of staying on simple, fixed automatic timers, smart traffic lights use advanced ground sensors and cameras. They look at actual car queues in real time, shifting green or red signals dynamically to keep traffic flowing smoothly.[cite: 6]</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-img-box img-tracking"></div>
+            <h2>3. Public Transport Tracking</h2>
+            <p>Technology improves public bus and train transport by offering citizens real-time digital schedules. Commuters use smartphone apps to check live locations and route updates instantly, which prevents overcrowding at local platforms.[cite: 6]</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-img-box img-ai"></div>
+            <h2>4. AI and Self-Driving Systems</h2>
+            <p>Artificial Intelligence assists directly with urban traffic management layouts. AI systems run autonomous self-driving cars, utilizing smart cameras and sensors to avoid accidents and make choices far faster than human drivers.[cite: 6]</p>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Eco Transit - All Rights Reserved</p>
+    </footer>
+</body>
+</html>

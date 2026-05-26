@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../Logo.png">
+    <title>IoT and AI Technology - EcoTransit</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.8; 
+        }
+
+        header.navbar {
+            background-color: #ffffff;
+            padding: 0 5%;
+            border-bottom: 4px solid #27ae60;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-group { 
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .circle-logo {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #e8f8f5; 
+        }
+
+        .circle-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-name {
+            margin-left: 10px;
+        }
+
+        .logo-name h1 { 
+            margin: 0; 
+            font-size: 20px; 
+            color: #2c3e50; 
+        }
+
+        .nav-links {
+            list-style-type: none; 
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 20px 15px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: bold;
+            display: block;
+        }
+
+        .nav-item a:hover {
+            color: #27ae60;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 220px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            list-style-type: none;
+            padding: 0;
+            border-top: 3px solid #27ae60;
+        }
+
+        .nav-item:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content li a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: normal;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content li a:hover {
+            background-color: #f1f1f1;
+            color: #27ae60;
+        }
+
+        #menu-checkbox {
+            display: none;
+        }
+
+        .menu-container {
+            display: none;
+            position: relative;
+            padding: 20px 0;
+            z-index: 102;
+        }
+
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #2c3e50;
+            border-radius: 3px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hero-banner {
+            background-color: #2c3e50;
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../Images/8.webp'); 
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 10%;
+            text-align: center;
+        }
+
+        .hero-content h2 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            color: #27ae60;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .tech-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 60px 5%;
+            background: #ffffff;
+            gap: 25px;
+        }
+
+        .tech-card {
+            width: 33%;
+            padding: 30px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+            background: #27ae60;
+        }
+
+        .tech-card h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-size: 26px;
+            border-bottom: 2px solid #27ae60;
+            padding-bottom: 10px;
+        }
+
+        .tech-card:hover h2 {
+            border-bottom: 2px solid #2c3e50;
+        }
+
+        .tech-card p {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .tech-card ul {
+            padding-left: 20px;
+            font-size: 14px;
+        }
+
+        .tech-card li {
+            margin-bottom: 6px;
+        }
+
+        .ev-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 5%;
+            background: #f4f7f6;
+            transition: background 0.4s ease;
+            gap: 40px;
+        }
+
+        .ev-text {
+            width: 50%;
+            padding: 40px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+        }
+
+        .ev-text:hover {
+            transform: translateY(-10px);
+            background: #27ae60;
+        }
+
+        .ev-text h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-size: 36px;
+        }
+
+        .ev-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .ev-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .ev-image {
+            width: 50%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url("../Images/14.webp") no-repeat center;
+            background-size: cover;
+            border-radius: 20px;
+        }
+
+        .ev-section:hover {
+            background: #eef2f1;
+        } 
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #2c3e50;
+            color: white;
+        }
+
+        @media screen and (max-width: 950px) {
+            .tech-section {
+                flex-direction: column;
+                padding: 40px 5%;
+            }
+
+            .tech-card {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .ev-section {
+                flex-direction: column;
+                padding: 40px 5%;
+            }
+
+            .ev-text, .ev-image {
+                width: 100%;
+            }
+
+            .ev-image {
+                height: 300px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-container {
+                display: block;
+            }
+
+            .menu-container:hover .menu-toggle span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            .menu-container:hover .menu-toggle span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-container:hover .menu-toggle span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 69px; 
+                right: -100%;
+                flex-direction: column;
+                align-items: flex-start;
+                background-color: #ffffff;
+                width: 280px;
+                height: calc(100vh - 69px);
+                box-shadow: -4px 4px 10px rgba(0,0,0,0.1);
+                transition: right 0.3s ease-in-out;
+                padding: 40px 20px 20px 20px;
+                z-index: 99;
+            }
+
+            .menu-container:hover ~ .nav-links,
+            .nav-links:hover {
+                right: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+                padding: 15px 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                width: 100%;
+                background: #f9f9f9;
+                border-top: none;
+                margin-top: 10px;
+            }
+            
+            .nav-item:hover .dropdown-content {
+                display: block;
+            }
+
+            .hero-content h2 {
+                font-size: 32px;
+            }
+            .hero-content p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo-group">
+            <div class="circle-logo">
+                <img src="../Logo.png" alt="EcoTransit Logo">
+            </div>
+            <div class="logo-name">
+                <h1>EcoTransit</h1>
+            </div>
+        </div>
+        
+        <input type="checkbox" id="menu-checkbox">
+
+        <div class="menu-container">
+            <label for="menu-checkbox" class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+
+        <ul class="nav-links">
+            <li class="nav-item"><a href="../index.html">Home</a></li>
+            <li class="nav-item">
+                <a href="#">Topics ▼</a>
+                <ul class="dropdown-content">
+                    <li><a href="Traffic_Challenge.html">Traffic Challenges</a></li>
+                    <li><a href="AI_and_IoT.html">IoT and AI Technology</a></li>
+                    <li><a href="Tech_in_Transportation.html">Technology in Transportation</a></li>
+                    <li><a href="Smart_Cities.html">Sustainable Smart City</a></li>
+                </ul>
+            </li>
+            <li class="nav-item"><a href="Group_Member.html">About Us</a></li>
+            <li class="nav-item"><a href="Citations.html">Citations</a></li>
+        </ul>
+    </header>
+
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h2>IoT and AI Technology</h2>
+            <p>Discover how modern smart networks and algorithms work together to run clean, high-tech transportation networks.</p>
+        </div>
+    </section>
+
+    <section class="tech-section">
+        
+        <div class="tech-card">
+            <h2>Internet of Things</h2>
+            <p>The Internet of Things (IoT) connects everyday physical devices to the internet so they can collect data and share information instantly.</p>
+            <p><strong>Real-world Examples:</strong></p>
+            <ul>
+                <li>Smart watches &amp; trackers</li>
+                <li>Roadside movement sensors</li>
+                <li>Interactive traffic lights</li>
+            </ul>
+        </div>
+
+        <div class="tech-card">
+            <h2>Artificial Intelligence</h2>
+            <p>Artificial Intelligence (AI) lets computers and automated programs learn from datasets, think critically, and make fast choices like humans.</p>
+            <p><strong>Real-world Examples:</strong></p>
+            <ul>
+                <li>Virtual voice assistants</li>
+                <li>Autonomous self-driving cars</li>
+                <li>Smart route planning apps</li>
+            </ul>
+        </div>
+
+        <div class="tech-card">
+            <h2>Working Together</h2>
+            <p>Together, these systems change how we travel. IoT hardware collects raw data from roadways, while cloud AI systems analyze it to build fast and efficient pathways.</p>
+            <p><strong>Primary Uses:</strong></p>
+            <ul>
+                <li>Eco-friendly transport grids</li>
+                <li>Advanced hospital systems</li>
+                <li>Future sustainable smart cities</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <section class="ev-section">
+        <div class="ev-text">
+            <h2>Electric Vehicles (EV)</h2>
+            <p>
+                Electric Vehicles (EVs) are modern cars, buses, or trains powered completely by clean electricity instead of burning petrol or diesel fuel. They run on massive, rechargeable on-board batteries and release zero harmful tailpipe air pollution, making them highly environmentally friendly.
+            </p>
+            <p>
+                By switching to EVs, cities can drop their total carbon emissions, lower fuel consumption, and quiet down noisy urban streets. Many sustainable smart cities build public charging setups to get more citizens using EVs for a cleaner tomorrow.
+            </p>
+        </div>
+        <div class="ev-image"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Eco Transit - All Rights Reserved</p>
+    </footer>
+</body>
+</html>
