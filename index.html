@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="Logo.png">
+    <title>Smart City: Sustainable Transportation</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #6FCF97;
+            color: #1F6F5F;
+            line-height: 1.8; 
+        }
+
+        header.navbar {
+            background-color: #ffffff;
+            padding: 0 5%;
+            border-bottom: 4px solid #27ae60;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-group { 
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .circle-logo {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #e8f8f5; 
+        }
+
+        .circle-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-name {
+            margin-left: 10px;
+        }
+
+        .logo-name h1 { 
+            margin: 0; 
+            font-size: 20px; 
+            color: #2c3e50; 
+        }
+
+        .nav-links {
+            list-style-type: none; 
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 20px 15px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: bold;
+            display: block;
+        }
+
+        .nav-item a:hover {
+            color: #27ae60;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 220px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            list-style-type: none;
+            padding: 0;
+            border-top: 3px solid #27ae60;
+        }
+
+        .nav-item:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content li a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: normal;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content li a:hover {
+            background-color: #f1f1f1;
+            color: #27ae60;
+        }
+
+        #menu-checkbox {
+            display: none;
+        }
+
+        /* Mobile Hover & Interaction Container Menu Trigger */
+        .menu-container {
+            display: none;
+            position: relative;
+            padding: 20px 0;
+            z-index: 102;
+        }
+
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #2c3e50;
+            border-radius: 3px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hero-banner {
+            background-color: #2c3e50;
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('Images/1.jfif'); 
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 10%;
+            text-align: center;
+        }
+
+        .hero-content h2 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            color: #27ae60;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .content-section {
+            padding: 60px 10%;
+            background-color: white;
+            border-bottom: 1px solid #eee;
+        }
+
+        .content-section:nth-child(even) {
+            background-color: #fdfdfd;
+        }
+
+        .split-layout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .split-text {
+            flex: 1;
+        }
+
+        .btn-more {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        .btn-more:hover {
+            background-color: #219150;
+            transform: scale(1.05);
+            transition: 0.3s;
+        }
+
+        .circle {
+            width: 300px;
+            min-width: 300px;
+            height: 300px;
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('Images/2.webp'); 
+            border: 5px solid #27ae60;
+            border-radius: 50%;
+        }
+
+        .square {
+            width: 300px;
+            min-width: 300px;
+            height: 300px;
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Images/4.webp'); 
+            border: 5px solid #27ae60;
+        }
+
+        h2 { 
+            color: #27ae60; 
+            border-bottom: 2px solid #27ae60; 
+            display: inline-block; 
+            padding-bottom: 5px; 
+        }
+
+        .box-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 40px 0;
+        }
+
+        .box {
+            background-color: white;
+            border: 1px solid #ddd;
+            flex: 1;
+            padding: 25px;
+            border-top: 5px solid #27ae60;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .container {
+            display: block;
+            width: 100%;
+            padding: 30px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .faq-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+        }
+
+        .faq-image {
+            flex: 1;
+        }
+
+        .faq-questions {
+            flex: 1.5;
+        }
+
+        .faq-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 4px solid #27ae60;
+        }
+
+        .faq-questions details {
+            background: white;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .faq-questions details summary {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+
+        .faq-questions summary::after {
+            content: "▷";
+            color: #2c3e50;
+            font-size: 14px;
+            transition: 0.4s;
+        }
+
+        .faq-questions details[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        .faq-questions p {
+            margin-top: 12px;
+            color: #555;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+ 
+        .contact-box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        .contact-box h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .contact-box button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #2c3e50;
+            color: white;
+        }
+
+        @media screen and (max-width: 1024px) {
+            .content-section {
+                padding: 40px 6%;
+            }
+            .hero-banner {
+                padding: 80px 5%;
+            }
+            .hero-content h2 {
+                font-size: 34px;
+            }
+            .circle, .square {
+                width: 240px;
+                min-width: 240px;
+                height: 240px;
+            }
+            .box-container {
+                gap: 15px;
+            }
+            .box {
+                padding: 15px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-container {
+                display: block; 
+            }
+
+            /* Activates Hover Menu Slide State for Mobile */
+            .menu-container:hover .menu-toggle span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            .menu-container:hover .menu-toggle span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-container:hover .menu-toggle span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 69px; 
+                right: -100%;
+                flex-direction: column;
+                align-items: flex-start;
+                background-color: #ffffff;
+                width: 280px;
+                height: calc(100vh - 69px);
+                box-shadow: -4px 4px 10px rgba(0,0,0,0.1);
+                transition: right 0.3s ease-in-out;
+                padding: 30px 20px;
+                z-index: 99;
+            }
+
+            /* Keeps menu open when hovering trigger area or items list area */
+            .menu-container:hover ~ .nav-links,
+            .nav-links:hover {
+                right: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+                padding: 15px 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                width: 100%;
+                background: #f9f9f9;
+                border-top: none;
+                margin-top: 10px;
+            }
+            
+            .nav-item:hover .dropdown-content {
+                display: block;
+            }
+
+            .hero-content h2 {
+                font-size: 26px;
+            }
+            .hero-content p {
+                font-size: 16px;
+            }
+            
+            .split-layout {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+            }
+            .circle, .square {
+                width: 200px;
+                min-width: 200px;
+                height: 200px;
+                margin: 0 auto; 
+            }
+            .box-container {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px 0;
+            }
+            .container {
+                padding: 15px;
+                border-radius: 15px;
+            }
+            .faq-wrapper {
+                flex-direction: column;
+            }
+            .faq-image, .faq-questions {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo-group">
+        <div class="circle-logo">
+            <img src="Logo.png" alt="EcoTransit Logo">
+        </div>
+        <div class="logo-name">
+            <h1>EcoTransit</h1>
+        </div>
+    </div>
+    
+    <input type="checkbox" id="menu-checkbox">
+    
+    <div class="menu-container">
+        <label for="menu-checkbox" class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
+
+    <ul class="nav-links">
+        <li class="nav-item"><a href="index.html">Home</a></li>
+        <li class="nav-item">
+            <a href="#">Topics ▼</a>
+            <ul class="dropdown-content">
+                <li><a href="Pages/Traffic_Challenge.html">Traffic Challenges</a></li>
+                <li><a href="Pages/AI_and_IoT.html">IoT and AI Technology</a></li>
+                <li><a href="Pages/Tech_in_Transportation.html">Technology in Transportation</a></li>
+                <li><a href="Pages/Smart_Cities.html">Sustainable Smart City</a></li>
+            </ul>
+        </li>
+        <li class="nav-item"><a href="Pages/Group_Member.html">About Us</a></li>
+        <li class="nav-item"><a href="Pages/Citations.html">Citations</a></li>
+    </ul>
+</header>
+
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h2>Smarter Mobility for Greener Cities</h2>
+            <p>Integrating AI and IoT to revolutionize how we move, breathe, and live in urban environments.</p>
+        </div>
+    </section>
+
+    <article id="intro" class="content-section">
+        <div class="split-layout">
+            <div class="split-text">
+                <h2>Introduction</h2>
+                <p>The role of IoT and AI in creating <strong>smart sustainable transportation.</strong> As cities grow, problems like traffic jams, pollution, fuel waste, and accidents increase. To solve these, many cities use smart technologies like the <strong><abbr title="Internet of Things">IoT</abbr> and <abbr title="Artificial Intelligence">AI</abbr></strong> to make transportation safer, faster, cleaner, and more sustainable. AI and IoT help create smart and sustainable transportation systems in cities. IoT devices like sensors, GPS, and smart traffic lights collect real-time data, while AI analyses the data to improve traffic flow and transportation services.</p>
+                <button class="btn-more">Read More</button>
+            </div>
+            <div class="circle"></div>
+        </div>
+    </article>
+
+    <section id="tech" class="content-section">
+        <h2>How Technology Works</h2>
+        <p>To make a city smart, we rely on three main pillars of technology:</p>
+        
+        <div class="box-container">
+            <div class="box">
+                <h3>Artificial Intelligence</h3>
+                <p>AI processes data from thousands of cameras to predict traffic jams before they happen and adjusts signal timings automatically.</p>
+            </div>
+            <div class="box">
+                <h3>Internet of Things</h3>
+                <p>IoT is the nervous system. Sensors placed in parking spots, buses, and trains send real-time location data directly to users' smartphones.</p>
+            </div>
+            <div class="box">
+                <h3>Autonomous Systems</h3>
+                <p>Self-driving shuttles and delivery robots reduce human error and can be programmed to drive in the most fuel-efficient manner possible.</p>
+            </div>
+        </div>
+        <button class="btn-more">Learn More</button>
+    </section>
+
+    <article id="sustainability" class="content-section">
+        <div class="split-layout">
+            <div class="split-text">
+                <h2>Sustainable Living</h2>
+                <p>Sustainable living means living in a way that helps protect the environment and use natural resources wisely so future generations can also enjoy them. It includes simple daily actions such as saving water and electricity, reducing waste, recycling, using eco-friendly transportation, and avoiding too much pollution. Sustainable living also encourages people to make smarter and healthier choices that support both nature and the community. By practicing sustainable living, people can help create cleaner cities, reduce environmental problems, and improve the quality of life for everyone. It is important because small actions from individuals can make a big difference in building a safer, greener, and more sustainable future.</p>
+                <button class="btn-more">Read More</button>
+            </div>
+            <div class="square"></div>
+        </div>
+    </article>
+
+    <section id="data" class="content-section">
+        <div class="container">
+            <h2 style="margin-bottom: 30px;">Frequently Asked Questions</h2>
+            
+            <div class="faq-wrapper">
+                <div class="faq-image">
+                    <img src="Images/banner.png" alt="FAQ Illustration">
+                </div>
+
+                <div class="faq-questions">
+                    <details> 
+                        <summary>How do IoT and AI improve urban transportation systems?</summary>
+                        <p>IoT collects real-time data from vehicles, roads, and traffic signals, while AI analyses the data to improve traffic flow, reduce congestion, and increase efficiency.</p>
+                    </details>
+                  
+                    <details> 
+                        <summary>How can smart transportation reduce traffic congestion?</summary>
+                        <p>AI-powered traffic management systems can adjust traffic lights, suggest faster routes, and monitor road conditions using IoT sensors.</p>
+                    </details>
+                  
+                    <details> 
+                        <summary>How do IoT and AI help the environment?</summary>
+                        <p>They reduce fuel consumption, lower carbon emissions, and support eco-friendly transport systems like electric vehicles and smart public transport.</p>
+                    </details>
+                  
+                    <details> 
+                        <summary>What are examples of IoT devices used in transportation?</summary>
+                        <p>Examples include GPS trackers, smart traffic lights, parking sensors, vehicle sensors, and surveillance cameras.</p>
+                    </details>
+                  
+                    <details> 
+                        <summary>How is AI used in smart transportation? </summary>
+                        <p>AI is used for route prediction, autonomous vehicles, accident detection, traffic forecasting, and smart parking systems.</p>
+                    </details>
+                  
+                    <details> 
+                        <summary>What are the benefits of smart transportation in cities?</summary>
+                        <p>Benefits include safer roads, reduced travel time, lower pollution, improved fuel efficiency, and better public transportation services.</p>
+                    </details>
+
+                    <div class="contact-box">
+                        <h3>Still have questions?</h3>
+                        <p>If you have any questions, feel free to email us.</p>
+                        <a href="mailto:phyotherit@gmail.com">
+                            <button type="button">Email us</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Eco Transit - All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>
